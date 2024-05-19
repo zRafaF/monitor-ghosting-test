@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" style="display: table; margin: auto; color-scheme: dark">
+  <meta charset="UTF-8" />
+  <meta content="width=device-width,initial-scale=1" name="viewport" />
+  <title>Monitor Ghosting Test</title>
+  <body
+    style="
+      color: #fff;
+      background-color: #000;
+      max-width: 1000px;
+      display: table-cell;
+      vertical-align: middle;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    "
+  >
+    <h1>Monitor Ghosting Test</h1>
+    <p>
+      Usually on VA panels with high refresh rates, you can see a ghosting
+      effect when scrolling up and down. It can show as blur or a darken of the
+      text. This is a test to see if you can see it on your monitor.
+    </p>
+    <hr />
+    <h2>Scroll up and down to see the ghosting effect</h2>
+    <div id="lorem-ipsum-container"></div>
+    <script>
+      const paragraphs = [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ullamcorper condimentum diam vel tincidunt. Aenean accumsan, mauris id ornare eleifend, urna eros sollicitudin massa, quis porta odio elit non dui. Quisque aliquam, metus ac tincidunt lacinia, massa nibh tempus sapien, sit amet tempus sem eros vitae dui. Fusce ac odio id tortor suscipit tincidunt sed suscipit massa. Suspendisse lorem lectus, efficitur laoreet urna sit amet, porttitor dapibus ex. Ut gravida tellus id odio tempor egestas. Fusce mollis eget turpis sed laoreet.",
+        "Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc tellus nisi, consequat at commodo quis, sollicitudin a dolor. Fusce ornare nunc nec nisi molestie ultrices. Ut eleifend sollicitudin elit, in dapibus nibh laoreet in. Phasellus velit velit, imperdiet ac urna vel, sodales consequat lectus. Etiam eu arcu vel turpis consequat auctor a in ligula. Ut pulvinar purus et eros bibendum, vel imperdiet ante cursus.",
+        "Aenean elementum venenatis felis. Maecenas non euismod libero. Curabitur eu malesuada magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lectus lacus, porta ac lectus vel, porta blandit nunc. In in cursus mauris. Duis maximus, lectus in hendrerit pretium, nunc nisi lacinia erat, in tristique tortor risus quis lorem. Donec a aliquet sapien. Proin tincidunt ex odio, et aliquam leo laoreet lacinia. Donec iaculis, nisi a feugiat lacinia, risus nunc volutpat dui, vitae suscipit mi nunc vitae nunc. Aliquam a sapien hendrerit, suscipit tortor in, condimentum sapien. Etiam ultricies nisi pulvinar consequat commodo. Aenean volutpat elit porttitor leo aliquam, vitae varius nisi egestas. Mauris varius felis vel rhoncus porttitor.",
+        "Suspendisse ac massa lorem. Etiam dignissim varius dui, et iaculis nisl dignissim ut. Integer cursus venenatis pellentesque. Aliquam sed consequat velit. Curabitur turpis velit, faucibus at elementum ut, pellentesque in velit. Proin tincidunt, nisl id gravida facilisis, nunc augue consequat erat, vel suscipit felis purus nec mi. Maecenas eget malesuada est, nec eleifend tortor. Pellentesque vestibulum imperdiet lectus id tincidunt.",
+        "Integer mollis, magna id malesuada sagittis, ante nisi molestie nisi, sed eleifend urna nisi et felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec maximus tincidunt quam et suscipit. Fusce nec tempus lacus. Ut volutpat ac nunc vel venenatis. Nulla vel semper sem. In vulputate lacus egestas pellentesque interdum. Aenean magna lectus, feugiat vitae ornare id, pulvinar eu ligula. Phasellus ut mattis tortor. Etiam sollicitudin ante tortor, et pretium mi vulputate at. Morbi ac arcu tincidunt, mollis massa a, egestas orci. Fusce tincidunt eros at porta lacinia. In hac habitasse platea dictumst. Curabitur sodales erat et suscipit tincidunt.",
+        "Morbi condimentum magna erat, eget blandit ipsum elementum in. Quisque ut metus commodo lacus sagittis lacinia. Fusce elementum, lacus sed finibus tincidunt, est mi sollicitudin dui, vel dignissim sapien diam at arcu. Sed ut accumsan purus, sit amet scelerisque enim. Nullam eros ipsum, pretium ut pulvinar ut, pretium vitae arcu. Ut eget ultrices metus. Nullam mauris purus, venenatis vitae feugiat at, ornare eget ligula. Nulla a odio ut mauris viverra blandit.",
+      ];
+
+      const loremIpsumContainer = document.getElementById(
+        "lorem-ipsum-container"
+      );
+
+      const appendParagraph = (paragraph) => {
+        const p = document.createElement("p");
+        p.textContent = paragraph;
+        loremIpsumContainer.appendChild(p);
+      };
+
+      for (let i = 0; i < 5; i++) {
+        paragraphs.forEach(appendParagraph);
+      }
+
+      window.addEventListener("scroll", () => {
+        const scrollPosition = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        const documentHeight = document.body.scrollHeight;
+
+        if (scrollPosition > (documentHeight - viewportHeight) / 2) {
+          appendParagraph(
+            paragraphs[Math.floor(Math.random() * paragraphs.length)]
+          );
+        }
+      });
+    </script>
+  </body>
+</html>
