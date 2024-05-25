@@ -19,6 +19,19 @@
       effect when scrolling up and down. It can show as blur or a darken of the
       text. This is a test to see if you can see it on your monitor.
     </p>
+
+    <div>
+      <label for="colors">Text color</label>
+
+      <select name="colors" id="colors">
+        <option value="white">White</option>
+        <option value="orange">Orange</option>
+        <option value="red">Red</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+      </select>
+    </div>
+
     <hr />
     <h2>Scroll up and down to see the ghosting effect</h2>
     <div id="lorem-ipsum-container"></div>
@@ -35,6 +48,13 @@
       const loremIpsumContainer = document.getElementById(
         "lorem-ipsum-container"
       );
+
+      let color = "white";
+
+      document.getElementById("colors").addEventListener("change", (event) => {
+        color = event.target.value;
+        document.body.style.color = color;
+      });
 
       const appendParagraph = (paragraph) => {
         const p = document.createElement("p");
